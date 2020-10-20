@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 添加dom容器，通常是空标签，react 会替换 dom 容器内任何已有内容 -->
+  <div id="root"></div>
+
+  <!-- 前两个 script 加载 react -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- 要使用 jsx 需要下面的 script 进行转码 -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- 加载我们的 React 组件。使用了 jsx 要加上 text/babel-->
+  <script type="text/babel">
+    ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      document.getElementById('root')
+    )
+  </script>
+</body>
+
+</html>
