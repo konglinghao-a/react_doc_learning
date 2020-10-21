@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    // 包含情况
+    function FancyBorder(props) {
+      return (
+        <div className={`FancyBorder FancyBorder-` + props.color}>
+          {props.children}
+        </div>
+      )
+    }
+    function WelcomDialog() {
+      return (
+        <FancyBorder>
+          <h1 className="Dialog-title">
+            Welcom
+          </h1>
+          <p className="Dialog-message">
+            Thank you for visiting our spacecraft
+          </p>
+        </FancyBorder>
+      )
+    }
+
+    // “留洞”情况
+    function SplitPane(props) {
+      return (
+        <div className="SplitPane">
+          <div className="SplitPane-left">
+            {props.left}
+          </div>
+          <div className="SplitPane-right">
+            {props.right}
+          </div>
+        </div>
+      )
+    }
+    function App() {
+      return (
+        <SplitPane
+          left={
+            <Contacts /> // 这些 React 元素的本质就是对象（object）
+          }
+          right={
+            <Chat />
+          }
+        />
+      )
+    }
+  </script>
+</body>
+
+</html>
