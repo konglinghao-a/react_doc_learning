@@ -15,32 +15,37 @@
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
   <script type="text/babel">
-    class Toggle extends React.Component {
+    class NameForm extends React.Component {
       constructor(props) {
         super(props);
         this.state = {
-          isToggleOn: true
+          value: ''
         }
       }
 
-      handleClick = () => {
-        // 如果状态用到了上一个 state，那么参数必须是回调函数的形式
-        this.setState((state) => ({
-          isToggleOn: !state.isToggleOn
-        }))
+      handleChange = (e) => {
+        this.setState({
+          value: e.target.value
+        })
+      }
+
+      handleSubmit = (e) => {
+        alert('提交的名字：' + this.state.value);
+        e.preventDefault();
       }
 
       render() {
         return (
-          // 需要谨慎对待回调函数中的 this，因为 class 中方法不会绑定 this，this 指向 undefined
-          <button onClick={this.handleClick}>
-            {this.state.isToggleOn ? 'on' : 'off'}
-          </button>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="提交" />
+          </form>
         )
       }
     }
-
-    ReactDOM.render(<Toggle />, document.getElementById('root'));
+    ReactDOM.render(<NameForm />, document.getElementById('root'));
   </script>
 </body>
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Reservation extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          isGoing: true,
+          numberOfGuests: 2
+        }
+      }
+
+      // 相当于利用 name 属性来处理多个 input 的事件
+      handleInputChange = (e) => {
+        const target = e.target;
+        const value = target.name === 'isGoing' ? target.checked : target.value
+        const name = target.name;
+        this.setState({
+          [name]: value
+        })
+      }
+
+      render() {
+        return (
+          <form>
+            <label>
+              参与：
+                <input
+                name="isGoing"
+                type="checkbox"
+                checked={this.state.isGoing}
+                onChange={this.handleInputChange}
+              />
+            </label>
+            <br />
+            <label>
+              <input
+                name="numberOfGuests"
+                type="number"
+                value={this.state.numberOfGuests}
+                onChange={this.handleInputChange}
+              />
+            </label>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Reservation />,
+      document.getElementById('root')
+    )
+
+  </script>
+</body>
+
+</html>
